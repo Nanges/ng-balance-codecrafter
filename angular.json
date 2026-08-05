@@ -8,7 +8,11 @@
   "projects": {
     "dashboard": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "type": "component"
+        }
+      },
       "root": "projects/dashboard",
       "sourceRoot": "projects/dashboard/src",
       "prefix": "app",
