@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ZardButtonComponent } from '@/ui/primitives/button';
 import { ZardCardComponent } from '@/ui/primitives/card'
 import { ZardFormFieldComponent, ZardFormLabelComponent, ZardFormControlComponent } from '@/ui/primitives/form';
@@ -25,11 +25,16 @@ export class LoginPageComponent {
   protected readonly form = new FormGroup({
     name: new FormControl<string>('', {validators: Validators.required}),
     password: new FormControl<string>('', { validators: Validators.required})
-  })
+  });
+
+  protected readonly loading = signal<boolean>(false);
 
   login(){
+    this.loading.set(true);
     this.#api.login({
       user:this.form.value
-    } as GetTokenRequest).subscribe();
+    } as GetTokenRequest).subscribe(() => {
+      this.loading.set(false);
+    });
   }
 }
