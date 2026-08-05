@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "zard-cli":"zard-cli"
+    "zard-cli":"zard-cli",
+    "ui:build":"ng build ui"
   },
   "prettier": {
     "printWidth": 100,
