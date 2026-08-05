@@ -1,0 +1,17 @@
+{
+  "$schema": "https://zardui.com/schema.json",
+  "style": "css",
+  "appConfigFile": "projects/dashboard/src/app/app.config.ts",
+  "packageManager": "npm",
+  "tailwind": {
+    "css": "projects/dashboard/src/styles.css",
+    "baseColor": "gray"
+  },
+  "baseUrl": "projects",
+  "aliases": {
+    "components": "@/ui/primitives",
+    "utils": "@/ui/primitives/utils",
+    "core": "@/ui/primitives/core",
+    "services": "@/ui/primitives/services"
+  }
+}
