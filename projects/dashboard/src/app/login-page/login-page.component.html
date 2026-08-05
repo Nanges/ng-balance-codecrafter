@@ -24,6 +24,7 @@
           <button type="submit" z-button class="w-full" [zLoading]="loading()" [disabled]="loading()">Sign in</button>
         </form>
       </z-card>
+      <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Invalide username or password"></z-alert>
     </div>
   </div>
   <aside class="hidden flex-1 items-center justify-center bg-muted p-8 lg:flex illustration"></aside>
