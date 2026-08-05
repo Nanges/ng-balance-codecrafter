@@ -9,6 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { provideIcons } from '@ng-icons/core';
 import { lucideAlertTriangle } from '@ng-icons/lucide';
 import { HttpErrorResponse } from '@angular/common/http';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -35,27 +36,40 @@ export class LoginPageComponent {
 
   protected readonly loading = signal<boolean>(false);
   protected readonly showInvalidCredentials = signal<boolean>(false);
+  protected readonly showServiceUnavailable = signal<boolean>(false);
 
-  login(){
+  submit(){
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.loading.set(true);
     this.showInvalidCredentials.set(false);
+    this.showServiceUnavailable.set(false);
 
     this.#api.login({
       user:this.form.value
     } as GetTokenRequest)
+    .pipe(finalize(() => this.loading.set(false)))
     .subscribe({
       error:(err: HttpErrorResponse) => {
         if(err.status === 401){
           this.showInvalidCredentials.set(true);
+          this.form.reset();
           return;
         }
+
+        this.showServiceUnavailable.set(true);
       },
       next:() => {
         // TODO
-      },
-      complete:() => {
-        this.loading.set(false);
       }
     });
+  }
+
+  protected isFieldInvalid(fieldName: string): boolean {
+    const field = this.form.get(fieldName);
+    return !!(field?.invalid && (field?.dirty || field?.touched));
   }
 }

@@ -6,10 +6,10 @@
         <p class="mt-2 text-sm text-muted-foreground sm:text-base">Sign in to your account to continue</p>
       </div>
       <z-card class="p-4 sm:p-6 lg:p-8">
-        <form class="space-y-4 sm:space-y-6" [formGroup]="form" (ngSubmit)="login()">
+        <form class="space-y-4 sm:space-y-6" [formGroup]="form" (ngSubmit)="submit()">
           <z-form-field>
             <z-form-label [zRequired]="true">User</z-form-label>
-            <z-form-control>
+            <z-form-control [errorMessage]="isFieldInvalid('name') ? 'This field is required' : ''">
               <input z-input type="text" formControlName="name" class="w-full" />
             </z-form-control>
           </z-form-field>
@@ -17,14 +17,20 @@
             <div class="flex items-center justify-between">
               <z-form-label [zRequired]="true">Password</z-form-label>
             </div>
-            <z-form-control>
+            <z-form-control [errorMessage]="isFieldInvalid('password') ? 'This field is required' : ''">
               <input z-input type="password" formControlName="password" class="w-full" />
             </z-form-control>
           </z-form-field>
-          <button type="submit" z-button class="w-full" [zLoading]="loading()" [disabled]="loading()">Sign in</button>
+          <button type="submit" z-button class="w-full" [zLoading]="loading()" [disabled]="loading() || !form.valid">Sign in</button>
         </form>
       </z-card>
-      <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Invalide username or password"></z-alert>
+      @if(showInvalidCredentials()){
+        <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Invalid username or password"></z-alert>  
+      }
+
+      @if(showServiceUnavailable()){
+        <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Service unavailable"></z-alert>
+      }
     </div>
   </div>
   <aside class="hidden flex-1 items-center justify-center bg-muted p-8 lg:flex illustration"></aside>
