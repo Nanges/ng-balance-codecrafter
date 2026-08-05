@@ -8,7 +8,6 @@ import { AuthApiService, GetTokenRequest } from 'api'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { provideIcons } from '@ng-icons/core';
 import { lucideAlertTriangle } from '@ng-icons/lucide';
-import { catchError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
