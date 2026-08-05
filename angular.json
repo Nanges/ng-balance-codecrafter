@@ -107,6 +107,11 @@
     },
     "api": {
       "projectType": "library",
+      "schematics":{
+        "@schematics/angular:service": {
+          "type": "service"
+        }    
+      },
       "root": "projects/api",
       "sourceRoot": "projects/api/src",
       "prefix": "lib",
