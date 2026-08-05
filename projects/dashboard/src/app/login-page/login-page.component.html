@@ -21,7 +21,7 @@
               <input z-input type="password" formControlName="password" class="w-full" />
             </z-form-control>
           </z-form-field>
-          <button type="submit" z-button class="w-full" [zLoading]="true" [disabled]="true">Sign in</button>
+          <button type="button" z-button class="w-full" [zLoading]="false" [disabled]="false" (click)="login()">Sign in</button>
         </form>
       </z-card>
     </div>

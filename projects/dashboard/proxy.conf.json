@@ -1,0 +1,8 @@
+{
+  "/api/**": {
+    "target": "https://balance.api.codecrafter.be",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
