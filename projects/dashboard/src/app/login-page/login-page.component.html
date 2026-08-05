@@ -18,7 +18,15 @@
               <z-form-label [zRequired]="true">Password</z-form-label>
             </div>
             <z-form-control [errorMessage]="isFieldInvalid('password') ? 'This field is required' : ''">
-              <input z-input type="password" formControlName="password" class="w-full" />
+              <z-button-group class="w-full">
+                <z-input-group>
+                  <input z-input [type]="isPasswordHidden() ? 'password':'text'" formControlName="password" class="w-full" />
+                  <button type="button" z-input-group-button zSize="icon-xs" class="ml-auto" (click)="isPasswordHidden.update(v => !v)">
+                    <ng-icon [name]="isPasswordHidden() ? 'lucideEye' : 'lucideEyeOff'" />
+                    <span class="sr-only">{{isPasswordHidden() ? 'Show password' : 'Hide password'}}</span>
+                  </button>
+                </z-input-group>
+              </z-button-group>
             </z-form-control>
           </z-form-field>
           <button type="submit" z-button class="w-full" [zLoading]="loading()" [disabled]="loading() || !form.valid">Sign in</button>

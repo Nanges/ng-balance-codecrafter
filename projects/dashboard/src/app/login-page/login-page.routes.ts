@@ -4,5 +4,5 @@ import { LoginPageComponent } from "./login-page.component";
 export const routes:Routes = [{
     path:'',
     component:LoginPageComponent,
-    title:"Login - Balance Code Crafter"
+    title:"Sign in - Balance Code Crafter"
 }];

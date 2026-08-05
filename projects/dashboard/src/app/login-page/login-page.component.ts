@@ -3,11 +3,13 @@ import { ZardButtonComponent } from '@/ui/primitives/button';
 import { ZardCardComponent } from '@/ui/primitives/card'
 import { ZardFormFieldComponent, ZardFormLabelComponent, ZardFormControlComponent } from '@/ui/primitives/form';
 import { ZardInputComponent } from '@/ui/primitives/input';
+import { ZardInputGroupComponent, ZardInputGroupImports } from '@/ui/primitives/input-group';
 import { ZardAlertComponent } from '@/ui/primitives/alert';
+import { ZardButtonGroupComponent } from '@/ui/primitives/button-group'
 import { AuthApiService, GetTokenRequest } from 'api'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { provideIcons } from '@ng-icons/core';
-import { lucideAlertTriangle } from '@ng-icons/lucide';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideAlertTriangle, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
 
@@ -17,15 +19,19 @@ import { finalize } from 'rxjs';
     ZardButtonComponent,
     ZardCardComponent,
     ZardInputComponent,
+    ZardInputGroupComponent,
     ZardFormFieldComponent,
     ZardFormLabelComponent,
     ZardFormControlComponent,
     ZardAlertComponent,
+    ZardButtonGroupComponent,
     ReactiveFormsModule,
+    ...ZardInputGroupImports,
+    NgIcon
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
-  viewProviders: [provideIcons({ lucideAlertTriangle })]
+  viewProviders: [provideIcons({ lucideAlertTriangle, lucideEye, lucideEyeOff })]
 })
 export class LoginPageComponent {
   readonly #api = inject(AuthApiService);
@@ -37,6 +43,7 @@ export class LoginPageComponent {
   protected readonly loading = signal<boolean>(false);
   protected readonly showInvalidCredentials = signal<boolean>(false);
   protected readonly showServiceUnavailable = signal<boolean>(false);
+  protected readonly isPasswordHidden = signal<boolean>(true);
 
   submit(){
     if (this.form.invalid) {
@@ -51,9 +58,10 @@ export class LoginPageComponent {
     this.#api.login({
       user:this.form.value
     } as GetTokenRequest)
-    .pipe(finalize(() => this.loading.set(false)))
     .subscribe({
       error:(err: HttpErrorResponse) => {
+        this.loading.set(false);
+
         if(err.status === 401){
           this.showInvalidCredentials.set(true);
           this.form.reset();
