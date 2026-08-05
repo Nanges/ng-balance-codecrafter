@@ -4,8 +4,8 @@ import { ZardButtonComponent } from '@/ui/primitives/button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ZardButtonComponent],
-  templateUrl: './app.html',
+  imports: [RouterOutlet],
+  template:`<router-outlet/>`,
   styleUrl: './app.css'
 })
 export class App {
