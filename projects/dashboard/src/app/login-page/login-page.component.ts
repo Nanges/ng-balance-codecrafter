@@ -9,9 +9,8 @@ import { ZardButtonGroupComponent } from '@/ui/primitives/button-group'
 import { AuthApiService, GetTokenRequest } from 'api'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideAlertTriangle, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
+import { lucideAlertTriangle, lucideEye, lucideEyeOff, lucideSun } from '@ng-icons/lucide';
 import { HttpErrorResponse } from '@angular/common/http';
-import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -31,7 +30,7 @@ import { finalize } from 'rxjs';
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
-  viewProviders: [provideIcons({ lucideAlertTriangle, lucideEye, lucideEyeOff })]
+  viewProviders: [provideIcons({ lucideAlertTriangle, lucideEye, lucideEyeOff, lucideSun })]
 })
 export class LoginPageComponent {
   readonly #api = inject(AuthApiService);

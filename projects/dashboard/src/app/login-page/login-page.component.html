@@ -1,44 +1,51 @@
 <div class="flex min-h-screen flex-col lg:flex-row">
-  <div class="flex flex-1 items-center justify-center bg-background p-4 sm:p-8">
-    <div class="w-full max-w-md space-y-6 sm:space-y-8">
-      <div class="text-center">
-        <h1 class="text-2xl font-bold sm:text-3xl">Welcome back</h1>
-        <p class="mt-2 text-sm text-muted-foreground sm:text-base">Sign in to your account to continue</p>
-      </div>
-      <z-card class="p-4 sm:p-6 lg:p-8">
-        <form class="space-y-4 sm:space-y-6" [formGroup]="form" (ngSubmit)="submit()">
-          <z-form-field>
-            <z-form-label [zRequired]="true">User</z-form-label>
-            <z-form-control [errorMessage]="isFieldInvalid('name') ? 'This field is required' : ''">
-              <input z-input type="text" formControlName="name" class="w-full" />
-            </z-form-control>
-          </z-form-field>
-          <z-form-field>
-            <div class="flex items-center justify-between">
-              <z-form-label [zRequired]="true">Password</z-form-label>
-            </div>
-            <z-form-control [errorMessage]="isFieldInvalid('password') ? 'This field is required' : ''">
-              <z-button-group class="w-full">
-                <z-input-group>
-                  <input z-input [type]="isPasswordHidden() ? 'password':'text'" formControlName="password" class="w-full" />
-                  <button type="button" z-input-group-button zSize="icon-xs" class="ml-auto" (click)="isPasswordHidden.update(v => !v)">
-                    <ng-icon [name]="isPasswordHidden() ? 'lucideEye' : 'lucideEyeOff'" />
-                    <span class="sr-only">{{isPasswordHidden() ? 'Show password' : 'Hide password'}}</span>
-                  </button>
-                </z-input-group>
-              </z-button-group>
-            </z-form-control>
-          </z-form-field>
-          <button type="submit" z-button class="w-full" [zLoading]="loading()" [disabled]="loading() || !form.valid">Sign in</button>
-        </form>
-      </z-card>
-      @if(showInvalidCredentials()){
-        <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Invalid username or password"></z-alert>  
-      }
+  <div class="flex flex-1 flex-col bg-background p-4 sm:p-8">
+    <div class="flex justify-end">
+      <button type="button" z-button zType="outline" zSize="icon" aria-label="Switch theme">
+        <ng-icon name="lucideSun"/>
+      </button>
+    </div>
+    <div class="flex flex-1 items-center justify-center">
+      <div class="w-full max-w-md space-y-6 sm:space-y-8">
+        <div class="text-center">
+          <h1 class="text-2xl font-bold sm:text-3xl">Welcome back</h1>
+          <p class="mt-2 text-sm text-muted-foreground sm:text-base">Sign in to your account to continue</p>
+        </div>
+        <z-card class="p-4 sm:p-6 lg:p-8">
+          <form class="space-y-4 sm:space-y-6" [formGroup]="form" (ngSubmit)="submit()">
+            <z-form-field>
+              <z-form-label [zRequired]="true">User</z-form-label>
+              <z-form-control [errorMessage]="isFieldInvalid('name') ? 'This field is required' : ''">
+                <input z-input type="text" formControlName="name" class="w-full" />
+              </z-form-control>
+            </z-form-field>
+            <z-form-field>
+              <div class="flex items-center justify-between">
+                <z-form-label [zRequired]="true">Password</z-form-label>
+              </div>
+              <z-form-control [errorMessage]="isFieldInvalid('password') ? 'This field is required' : ''">
+                <z-button-group class="w-full">
+                  <z-input-group>
+                    <input z-input [type]="isPasswordHidden() ? 'password':'text'" formControlName="password" class="w-full" />
+                    <button type="button" z-input-group-button zSize="icon-xs" class="ml-auto" (click)="isPasswordHidden.update(v => !v)">
+                      <ng-icon [name]="isPasswordHidden() ? 'lucideEye' : 'lucideEyeOff'" />
+                      <span class="sr-only">{{isPasswordHidden() ? 'Show password' : 'Hide password'}}</span>
+                    </button>
+                  </z-input-group>
+                </z-button-group>
+              </z-form-control>
+            </z-form-field>
+            <button type="submit" z-button class="w-full" [zLoading]="loading()" [disabled]="loading() || !form.valid">Sign in</button>
+          </form>
+        </z-card>
+        @if(showInvalidCredentials()){
+          <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Invalid username or password"></z-alert>  
+        }
 
-      @if(showServiceUnavailable()){
-        <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Service unavailable"></z-alert>
-      }
+        @if(showServiceUnavailable()){
+          <z-alert zIcon="lucideAlertTriangle" zType="destructive" zTitle="Authentication failed" zDescription="Service unavailable"></z-alert>
+        }
+      </div>
     </div>
   </div>
   <aside class="hidden flex-1 items-center justify-center bg-muted p-8 lg:flex illustration"></aside>
