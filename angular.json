@@ -84,6 +84,9 @@
         "@schematics/angular:component": {
           "type": "component",
           "path": "projects/ui/components"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
         }
       },
       "prefix": "ui",

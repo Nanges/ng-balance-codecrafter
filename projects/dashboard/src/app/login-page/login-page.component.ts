@@ -5,12 +5,12 @@ import { ZardFormFieldComponent, ZardFormLabelComponent, ZardFormControlComponen
 import { ZardInputComponent } from '@/ui/primitives/input';
 import { ZardInputGroupComponent, ZardInputGroupImports } from '@/ui/primitives/input-group';
 import { ZardAlertComponent } from '@/ui/primitives/alert';
-import { ZardButtonGroupComponent } from '@/ui/primitives/button-group'
-import { EDarkModes, ZardDarkMode } from "@/ui/primitives/services"
+import { ZardButtonGroupComponent } from '@/ui/primitives/button-group';
 import { DarkModeSwitchComponent } from '@/ui/components/dark-mode-switch'
+import { ThemeSwitchComponent } from '@/ui/components/theme-switch';
 import { AuthApiService, GetTokenRequest } from 'api'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IconType, NgIcon, provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlertTriangle, lucideEye, lucideEyeOff, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -29,7 +29,8 @@ import { HttpErrorResponse } from '@angular/common/http';
     ReactiveFormsModule,
     ...ZardInputGroupImports,
     NgIcon,
-    DarkModeSwitchComponent
+    DarkModeSwitchComponent,
+    ThemeSwitchComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
