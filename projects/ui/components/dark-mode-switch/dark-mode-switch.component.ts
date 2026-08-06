@@ -8,7 +8,7 @@ import { ZardButtonComponent } from '@/ui/primitives/button';
   selector: 'ui-dark-mode-switch',
   imports: [NgIcon, ZardButtonComponent],
   template:`
-    <button type="button" z-button zType="outline" zSize="icon" aria-label="Switch theme" (click)="darkMode.toggleTheme()">
+    <button type="button" z-button zType="outline" zShape="circle" zSize="icon" aria-label="Switch theme" (click)="darkMode.toggleTheme()">
       <ng-icon [name]="darkModeIcon()"/>
     </button>
   `,
