@@ -1,6 +1,10 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [{
+export const routes: Routes = [
+{
     path:'login',
-    loadChildren: () => import('./login-page/login-page.routes').then(m => m.routes)
+    loadChildren: () => import('./login-page/login-page.routes').then(m => m.routes),
+},{
+    path:"**",
+    redirectTo:"login"
 }];
