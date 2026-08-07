@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ZardButtonComponent } from '@/ui/primitives/button';
 import { ZardCardComponent } from '@/ui/primitives/card'
 import { ZardFormFieldComponent, ZardFormLabelComponent, ZardFormControlComponent } from '@/ui/primitives/form';
@@ -13,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlertTriangle, lucideEye, lucideEyeOff, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -38,6 +39,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginPageComponent {
   readonly #api = inject(AuthApiService);
+  readonly #activatedRoute = inject(ActivatedRoute);
+  readonly #router = inject(Router);
 
   protected readonly form = new FormGroup({
     name: new FormControl<string>('', {validators: Validators.required}),
@@ -76,6 +79,14 @@ export class LoginPageComponent {
       },
       next:() => {
         // TODO
+        const returnUrl = this.#activatedRoute.snapshot.queryParamMap.get('returnUrl');
+
+        if(returnUrl){
+          this.#router.navigateByUrl(returnUrl);
+          return;
+        }
+
+        this.#router.navigate(['settings']);
       }
     });
   }
