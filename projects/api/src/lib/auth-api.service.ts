@@ -15,11 +15,11 @@ export type GetTokenRequest = {
 export class AuthApiService extends BaseApi {
 
   login(dto: GetTokenRequest){
-    return this.http.post(this.url('/auth/login'), dto);
+    return this.http.post(this.url`/auth/login`, dto);
   }
 
   getUserInfo(){
-    return this.http.get(this.url('/auth/userinfo'), { withCredentials: true });
+    return this.http.get(this.url`/auth/userinfo`, { withCredentials: true });
   }
 
   headUserInfo(){
