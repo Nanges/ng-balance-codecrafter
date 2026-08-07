@@ -21,16 +21,15 @@ export class ThemeSwitchService {
       if(currentTheme !== null){
         this.#root.classList.add(currentTheme);
         localStorage.setItem(APP_THEME, currentTheme);
-      }
 
-      cleanup(() => {
-        if(currentTheme !== null){
+        cleanup(() => {
           this.#root.classList.remove(currentTheme);
-        }
-
+        })
+      }
+      else{
         localStorage.removeItem(APP_THEME);
-      })
-    })
+      }
+    });
   }
 
   static initializers(){
