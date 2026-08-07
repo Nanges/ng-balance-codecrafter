@@ -7,7 +7,7 @@
     "start:production":"ng serve --configuration=production",
     "build:api":"ng build api",
     "build:ui":"ng build ui",
-    "build:dashboard:production":"ng build dashboard --configuration=production",
+    "build:dashboard:production":"ng build dashboard --configuration=production --base-href /ng-balance-codecrafter/",
     "build:production":"npm run build:api && npm run build:ui && npm run build:dashboard:production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
