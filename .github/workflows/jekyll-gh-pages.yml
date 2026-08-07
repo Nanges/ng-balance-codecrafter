@@ -46,3 +46,4 @@ jobs:
         with:
           folder: dist/dashboard/browser # Angular 17+ uses the /browser subfolder
           branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
