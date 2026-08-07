@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BaseApi } from './base-api';
 
 export type GetTokenRequest = {
   readonly user: {
@@ -11,15 +12,14 @@ export type GetTokenRequest = {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthApiService {
-  readonly #http = inject(HttpClient);
+export class AuthApiService extends BaseApi {
 
   login(dto: GetTokenRequest){
-    return this.#http.post('/api/auth/login', dto);
+    return this.http.post(this.url('/auth/login'), dto);
   }
 
   getUserInfo(){
-    return this.#http.get('/api/auth/userinfo', { withCredentials: true });
+    return this.http.get(this.url('/auth/userinfo'), { withCredentials: true });
   }
 
   headUserInfo(){

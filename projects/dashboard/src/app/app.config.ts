@@ -5,6 +5,8 @@ import { routes } from './app.routes';
 import { provideZard } from '@/ui/primitives/core';
 import { provideHttpClient } from '@angular/common/http';
 import { ThemeSwitchService } from '@/ui/theme-switch';
+import { provideApiUrl } from '@api';
+import { environment } from '../environments/environment';
 
 
 export const appConfig: ApplicationConfig = {
@@ -13,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideZard(),
     provideHttpClient(),
-    provideAppInitializer(ThemeSwitchService.initializers)
+    provideAppInitializer(ThemeSwitchService.initializers),
+    provideApiUrl(environment.apiUrl)
   ]
 };
