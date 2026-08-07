@@ -1,20 +1,22 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { catchError, map, of } from "rxjs";
+import { AuthApiService } from "@api";
 
 export const HttpOnlyCookieGuard: CanActivateFn = (state) => {
-    const http = inject(HttpClient);
-    const router = inject(Router);
+  const authApi = inject(AuthApiService)
+  const router = inject(Router);
 
-  // Send a HEAD request to check session validity
-  return http.get('/api/auth/userinfo', { withCredentials: true }).pipe(
-    map(() => true), // HTTP 200/204 -> Cookie is valid, allow route
-    catchError(() => {
-      // HTTP 401/403 -> Session invalid or expired, redirect
-      return of(router.createUrlTree(['/login'], {
-        queryParams:{returnUrl: state.url}
-      }));
+  return authApi.headUserInfo().pipe(
+    map(() => true), // Response ok
+    catchError((err: HttpErrorResponse) => {
+      if([401,403].includes(err.status))
+        return of(router.createUrlTree(['/login'], {
+          queryParams:{returnUrl: state.url}
+        }));
+
+      return of(true)
     })
-  );
+  )
 }

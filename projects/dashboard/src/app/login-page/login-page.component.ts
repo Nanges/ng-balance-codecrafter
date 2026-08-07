@@ -8,7 +8,7 @@ import { ZardAlertComponent } from '@/ui/primitives/alert';
 import { ZardButtonGroupComponent } from '@/ui/primitives/button-group';
 import { DarkModeSwitchComponent } from '@/ui/components/dark-mode-switch'
 import { ThemeSwitchComponent } from '@/ui/theme-switch';
-import { AuthApiService, GetTokenRequest } from 'api'
+import { AuthApiService, GetTokenRequest } from '@api'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlertTriangle, lucideEye, lucideEyeOff, lucideMoon, lucideSun } from '@ng-icons/lucide';

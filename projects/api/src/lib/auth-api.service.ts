@@ -17,4 +17,13 @@ export class AuthApiService {
   login(dto: GetTokenRequest){
     return this.#http.post('/api/auth/login', dto);
   }
+
+  getUserInfo(){
+    return this.#http.get('/api/auth/userinfo', { withCredentials: true });
+  }
+
+  headUserInfo(){
+    // FIXME: Use head instead
+    return this.getUserInfo();
+  }
 }
