@@ -20,6 +20,9 @@
       ],
       "api": [
         "./dist/api"
+      ],
+      "@dashboard/*":[
+        "./projects/dashboard/src/app/*"
       ]
     },
   },
