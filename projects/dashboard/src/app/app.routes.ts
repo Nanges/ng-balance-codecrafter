@@ -11,7 +11,12 @@ export const routes: Routes = [
         path:'settings',
         canActivate: [HttpOnlyCookieGuard],
         component: SettingsPageComponent
-    },{
+    },
+    {
+        path:'error',
+        loadComponent: () => import('./error-page/error-page.component').then(m => m.ErrorPageComponent)
+    },
+    {
         path:"**",
         redirectTo:"login"
     }

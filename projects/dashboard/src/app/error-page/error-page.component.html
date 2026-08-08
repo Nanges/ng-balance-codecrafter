@@ -1,0 +1,16 @@
+<z-empty
+      class="[&_[data-slot=empty-content]]:flex-col"
+      zTitle="It’s not you, it’s us"
+      zIcon="lucideWrench"
+      zDescription="We encountered an unexpected error while processing your request. Our team has been notified, and we're looking into it."
+      [zActions]="[supportLink]"
+    >
+   
+    <ng-template #supportLink>
+        <div class="flex h-5 items-center gap-4 text-sm">
+            <a [routerLink]="['/dashboard']">Back to dashboard</a>
+            <z-separator zOrientation="vertical" />
+            <a href="https://github.com/Nanges" target="_blank">Contact support</a>
+        </div>
+    </ng-template>
+</z-empty>

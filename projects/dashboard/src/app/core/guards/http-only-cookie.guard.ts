@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
-import { catchError, map, of } from "rxjs";
+import { catchError, map, of, throwError } from "rxjs";
 import { AuthApiService } from "@api";
 
 export const HttpOnlyCookieGuard: CanActivateFn = (state) => {
@@ -16,7 +16,7 @@ export const HttpOnlyCookieGuard: CanActivateFn = (state) => {
           queryParams:{returnUrl: state.url}
         }));
 
-      return of(true)
+      return throwError(() => of(err));
     })
   )
 }
