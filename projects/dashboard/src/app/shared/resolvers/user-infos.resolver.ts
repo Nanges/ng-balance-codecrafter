@@ -1,5 +1,5 @@
 import { inject } from "@angular/core";
-import { ResolveFn } from "@angular/router";
+import { RedirectCommand, ResolveFn, Router } from "@angular/router";
 import { AuthApiService } from "@api";
 
 export const resolveUserInfos: ResolveFn<unknown> = () => {
