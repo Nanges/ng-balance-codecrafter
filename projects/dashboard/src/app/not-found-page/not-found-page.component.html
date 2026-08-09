@@ -1,0 +1,12 @@
+<z-empty
+      class="[&_[data-slot=empty-content]]:flex-col"
+      zTitle="404 - Not found"
+      zIcon="lucideFileQuestion"
+      zDescription="The page you're looking for doesn't exist or has been moved. Let's get you back on track."
+      [zActions]="[supportLink]"
+    >
+   
+    <ng-template #supportLink>
+        <a routerLink="/" class="h-5">Back to dashboard</a>
+    </ng-template>
+</z-empty>

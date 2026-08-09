@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 export const routes: Routes = [
     {
@@ -7,7 +7,7 @@ export const routes: Routes = [
         loadComponent: () => import('./login-page/login-page.component').then(m => m.LoginPageComponent),
     },
     {
-        path:"dashboard",
+        path:"",
         loadChildren:() => import('./dashboard/dashboard.routes').then(m => m.routes)
     },
     {
@@ -16,6 +16,6 @@ export const routes: Routes = [
     },
     {
         path:"**",
-        redirectTo:"dashboard"
+        component:NotFoundPageComponent
     }
 ];
