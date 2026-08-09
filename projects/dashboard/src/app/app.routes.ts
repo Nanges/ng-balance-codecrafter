@@ -7,8 +7,8 @@ export const routes: Routes = [
         loadComponent: () => import('./login-page/login-page.component').then(m => m.LoginPageComponent),
     },
     {
-        path:'settings',
-        component: SettingsPageComponent
+        path:"dashboard",
+        loadChildren:() => import('./dashboard/dashboard.routes').then(m => m.routes)
     },
     {
         path:'error',
@@ -16,6 +16,6 @@ export const routes: Routes = [
     },
     {
         path:"**",
-        redirectTo:"login"
+        redirectTo:"dashboard"
     }
 ];

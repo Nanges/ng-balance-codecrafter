@@ -14,5 +14,5 @@ export function errorNavigationHandler(navigationError: NavigationError){
         }
     }
 
-    return new RedirectCommand(router.createUrlTree(['error']));
+    return new RedirectCommand(router.createUrlTree(['error']),{replaceUrl:false});
 }
