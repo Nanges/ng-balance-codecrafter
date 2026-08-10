@@ -10,7 +10,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "type": "component"
+          "type": "component",
+          "displayBlock": true
         }
       },
       "root": "projects/dashboard",

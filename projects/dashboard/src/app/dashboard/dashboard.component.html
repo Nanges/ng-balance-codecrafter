@@ -1,1 +1,28 @@
-<router-outlet/>
+<z-layout class="h-screen">
+    <z-sidebar class="border-0 p-0" [zWidth]="250" [zCollapsedWidth]="56" [zCollapsible]="true" [zCollapsed]="collapased()" (zCollapsedChange)="collapased.update(v => !v)">
+        <nav class="p-2">
+            <z-sidebar-group>
+                @if(!collapased()){
+                    <z-sidebar-group-label>Settings</z-sidebar-group-label>
+                }
+                <ul>
+                    <li>
+                        <a z-button href="#" zType="ghost" [class.w-full]="!collapased()" class="justify-start">
+                            <ng-icon name="lucideUserCircle" [class.text-base]="!collapased()" [class.text-xl]="collapased()"/>
+                            @if(!collapased()){
+                                Profile
+                            }
+                        </a>
+                    </li>
+                </ul>
+                
+            </z-sidebar-group>
+        </nav>
+    </z-sidebar>
+    <z-layout>
+        <z-content class="min-h-0">
+            <router-outlet/>
+        </z-content>
+        <z-footer>Footer</z-footer>
+    </z-layout>
+</z-layout>
