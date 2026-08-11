@@ -7,11 +7,14 @@
                 }
                 <ul>
                     <li>
-                        <a z-button href="#" zType="ghost" [class.w-full]="!collapased()" class="justify-start">
-                            <ng-icon name="lucideUserCircle" [class.text-base]="!collapased()" [class.text-xl]="collapased()"/>
-                            @if(!collapased()){
-                                Profile
-                            }
+                        <a ui-sidebar-button uiIcon="lucideUserCircle" [routerLink]="['../profile']" [collapsed]="collapased()">
+                            Profile
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a ui-sidebar-button uiIcon="lucideSettings" [routerLink]="['../settings']" [collapsed]="collapased()">
+                            Settings
                         </a>
                     </li>
                 </ul>
